@@ -42,6 +42,7 @@ class _ChatBarState extends State<ChatBar> {
     return Scaffold(
         appBar: AppBar(
           title: Text("Chat Messages Status"),
+
         ),
         body: FutureBuilder(
           future: ReadJsonData(),
@@ -57,11 +58,15 @@ class _ChatBarState extends State<ChatBar> {
                         children: <Widget>[
                           Row(
                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              CircleAvatar(
+                            children: <Widget>[                 
+                              Padding(padding: EdgeInsets.only(right: 20),
+                              child: CircleAvatar(                                
                                 backgroundImage: NetworkImage(
                                     _chat[index].avatar.toString()),
+                                    radius: 40,
                               ),
+                              )   ,      
+                              
                               Expanded(
                                 child: Column(
 
@@ -71,13 +76,19 @@ class _ChatBarState extends State<ChatBar> {
                                       child: 
                                        Row(
                                       children: [
-                                      Text(_chat[index].firstname.toString()),
-                                    Text(_chat[index].lastname.toString()),
+                                      Text(_chat[index].firstname.toString(),
+                                      style: TextStyle(fontSize: 30,
+                                      fontWeight: FontWeight.bold),),
+                                    Text(_chat[index].lastname.toString(),
+                                    style: TextStyle(fontSize: 30,
+                                    fontWeight: FontWeight.bold),),
                                     ],),
                                     ),
   
-                                    Text(_chat[index].username.toString()),
-                                    Text(_chat[index].status.toString()),
+                                    Text(_chat[index].username.toString(),
+                                    style: TextStyle(fontSize: 20),),
+                                    Text(_chat[index].status.toString(),
+                                    style: TextStyle(fontSize: 20),),
                                   ],
                                 ),
                               ),
@@ -85,9 +96,17 @@ class _ChatBarState extends State<ChatBar> {
                                 child: Column(
                                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   // crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(_chat[index].lastseentime.toString()),
-                                    Text(_chat[index].messages == null ? "":_chat[index].messages.toString()),
+                                  children: <Widget>[
+                                    Text(_chat[index].lastseentime.toString(),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),),
+                                      CircleAvatar(
+                                        backgroundColor:Colors.grey[300] ,
+                                        child: Text(_chat[index].messages == null ? "":_chat[index].messages.toString(),
+                                    style: TextStyle(fontSize: 20,),),
+                                      )
+                                   
                                   ],
                                 ),
                               )
